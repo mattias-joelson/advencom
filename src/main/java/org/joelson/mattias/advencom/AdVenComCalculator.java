@@ -1,5 +1,6 @@
 package org.joelson.mattias.advencom;
 
+import org.joelson.mattias.advencom.calc.ProductionCalculator;
 import org.joelson.mattias.advencom.model.Amount;
 
 import java.util.Arrays;
@@ -68,8 +69,6 @@ public class AdVenComCalculator {
         System.out.println();
 
         double[] placeboProductionPerSecond = new double[placeboNames.length];
-        double[] placeboProductionPerSecondProduct = new double[placeboNames.length];
-        placeboProductionPerSecondProduct[0] = 1;
         for (int i = 1; i < placeboNames.length; i += 1) {
             double singleProductionPerSecond = placeboProduction[i] * power * Math.pow(2, placeboResearcherLevels[i]) * (chance * bonus - chance + 1) / placeboProductionTime[i];
             double singleProductionNoChancePerSecond = placeboProduction[i] * power * Math.pow(2, placeboResearcherLevels[i]) / placeboProductionTime[i];
@@ -79,7 +78,6 @@ public class AdVenComCalculator {
                     singleProductionNoChancePerSecond, placeboNames[i - 1],
                     singleProductionNoChance, placeboNames[i - 1]);
             placeboProductionPerSecond[i] = singleProductionPerSecond;
-            placeboProductionPerSecondProduct[i] = placeboProductionPerSecondProduct[i - 1] * singleProductionPerSecond;
         }
 
         // 556,42 SS
@@ -98,7 +96,6 @@ public class AdVenComCalculator {
         };
 
         System.out.println(Arrays.toString(placeboProductionPerSecond));
-        System.out.println(Arrays.toString(placeboProductionPerSecondProduct));
         System.out.println(Arrays.toString(placeboResources));
 
         for (int i = 0; i < placeboProductionPerSecond.length; i += 1) {
@@ -107,61 +104,12 @@ public class AdVenComCalculator {
                     placeboProductionPerSecond[i] * placeboResources[i]);
         }
 
-        double t = 360000;
-        System.out.printf("t:\t%f%n", t);
-        double sum = placeboResources[0];
-        System.out.printf("%s:\t%e (%s)%n", placeboNames[0], sum, Amount.of(sum));
-        double tProd = 1;
-        double fact = 1;
-        for (int i = 1; i < placeboNames.length; i += 1) {
-            tProd *= t;
-            fact *= i;
-            double y = placeboResources[i] * placeboProductionPerSecondProduct[i] * tProd / fact;
-            System.out.printf("%s:\t%e (%s)%n", placeboNames[i], y, Amount.of(y));
-            sum += y;
-        }
-        System.out.printf("%s:\t%e (%s)%n", placeboNames[0], sum, Amount.of(sum));
+        ProductionCalculator productionCalculator = new ProductionCalculator(placeboProductionPerSecond);
+        double calcSum = productionCalculator.calcTotalProduction(360000, placeboResources);
+        System.out.printf("*2* %s:\t%e (%s)%n", placeboNames[0], calcSum, Amount.of(calcSum));
 
-        double goal = Amount.valueOf(1.7, "TT");
-        int t_a = 0;
-        double y_a = calcY(t_a, placeboResources, placeboProductionPerSecondProduct);
-        // if y0 > goal done
-        int t_b = (int) ((goal - placeboResources[0]) / (placeboProductionPerSecond[1] * placeboResources[1]));
-        double y_b = calcY(t_b, placeboResources, placeboProductionPerSecondProduct);
-        System.out.printf("[(t_a, y_a), (t_b, y_b)]%n");
-        int i = 0;
-        while (t_b - t_a > 10) {
-            System.out.printf("%d - [(%d, %s), (%d, %s)]%n",
-                    i++, t_a, Amount.toString(y_a), t_b, Amount.toString(y_b));
-            int t_mid = (t_a + t_b) / 2;
-            double y_mid = calcY(t_mid, placeboResources, placeboProductionPerSecondProduct);
-            if (y_mid < goal) {
-                t_a = t_mid;
-                y_a = y_mid;
-            } else {
-                t_b = t_mid;
-                y_b = y_mid;
-            }
-        }
-        System.out.printf("%d - [(%d, %s), (%d, %s)]%n",
-                i, t_a, Amount.toString(y_a), t_b, Amount.toString(y_b));
-    }
+        int t_calculated = productionCalculator.calcTimeToGoal(Amount.valueOf(1.7, "TT"), placeboResources);
+        System.out.printf("*[2]* %d%n", t_calculated);
 
-    private static double calcY(int t, double[] placeboResources, double[] placeboProductionPerSecondProduct) {
-        System.out.printf("t:\t%d%n", t);
-        double sum = placeboResources[0];
-        System.out.printf("y0:\t%e (%s)%n", sum, Amount.of(sum));
-        double tProd = 1;
-        double fact = 1;
-        for (int i = 1; i < placeboResources.length; i += 1) {
-            tProd *= t;
-            fact *= i;
-            double y = placeboResources[i] * placeboProductionPerSecondProduct[i] * tProd / fact;
-            System.out.printf("y%d:\t%e (%s)%n", i, y, Amount.toString(y));
-            sum += y;
-        }
-        System.out.printf("y:\t%e (%s)%n", sum, Amount.toString(sum));
-
-        return sum;
     }
 }
