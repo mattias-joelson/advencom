@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Amount {
 
-    private enum Range {
+    public enum Range {
         M(6), B(9), T(12),
         AA(15), BB(18), CC(21), DD(24), EE(27), FF(30), GG(33), HH(36), II(39),
         JJ(42), KK(45), LL(48), MM(51), NN(54), OO(57), PP(60), QQ(63), RR(66),
@@ -19,7 +19,7 @@ public class Amount {
                 BY_EXP.put(r.getExp(), r);
             }
         }
-        private int exp;
+        private final int exp;
         Range(int exp) {
             this.exp = exp;
         }

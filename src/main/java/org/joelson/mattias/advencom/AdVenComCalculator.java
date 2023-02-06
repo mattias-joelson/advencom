@@ -1,5 +1,6 @@
 package org.joelson.mattias.advencom;
 
+import org.joelson.mattias.advencom.application.Application;
 import org.joelson.mattias.advencom.calc.ProductionCalculator;
 import org.joelson.mattias.advencom.model.Amount;
 
@@ -8,8 +9,8 @@ import java.util.Arrays;
 public class AdVenComCalculator {
 
     public static void main(String[] args) {
-        //System.out.println("Hello, world!");
-        calc();
+        //calc();
+        new Application().show();
     }
 
     private static void calc() {
