@@ -1,6 +1,6 @@
 package org.joelson.mattias.advencom.application.view;
 
-import org.joelson.mattias.advencom.application.controller.ApplicationActions;
+import org.joelson.mattias.advencom.application.controller.ApplicationController;
 
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -21,14 +21,14 @@ public class ApplicationUI {
 
     private static final String APPLICATION_TITLE = "AdVenture Communist Calculator";
 
-    private final ApplicationActions applicationActions;
+    private final ApplicationController applicationController;
 
     private final JFrame applicationFrame;
     private final JLabel statusLabel;
     private Container currentContent;
 
-    public ApplicationUI(ApplicationActions applicationActions) {
-        this.applicationActions = applicationActions;
+    public ApplicationUI(ApplicationController applicationController) {
+        this.applicationController = applicationController;
         applicationFrame = createApplicationFrame();
         statusLabel = createContent(applicationFrame.getContentPane());
     }
@@ -43,7 +43,7 @@ public class ApplicationUI {
         frame.setSize(screenSize.width / 2, screenSize.height /2);
         frame.setLocation(screenSize.width / 4, screenSize.height / 4);
         frame.setExtendedState(frame.getExtendedState() | Frame.MAXIMIZED_BOTH);
-        frame.setJMenuBar(MenuBuilder.createApplicationMenu(applicationActions, this));
+        frame.setJMenuBar(MenuBuilder.createApplicationMenu(applicationController, this));
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(createFrameWindowListener());
         Desktop.getDesktop().disableSuddenTermination();
@@ -58,7 +58,7 @@ public class ApplicationUI {
     private WindowListener createFrameWindowListener() {
         return new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                applicationActions.closeApplication();
+                applicationController.closeApplication();
             }
         };
     }

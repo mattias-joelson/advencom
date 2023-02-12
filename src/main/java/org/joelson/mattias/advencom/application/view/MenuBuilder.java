@@ -1,6 +1,6 @@
 package org.joelson.mattias.advencom.application.view;
 
-import org.joelson.mattias.advencom.application.controller.ApplicationActions;
+import org.joelson.mattias.advencom.application.controller.ApplicationController;
 
 import javax.swing.Action;
 import javax.swing.JMenu;
@@ -15,11 +15,11 @@ public class MenuBuilder {
     private MenuBuilder() throws IllegalAccessException {
         throw new IllegalAccessException("Should not be instantiated!");
     }
-    static JMenuBar createApplicationMenu(ApplicationActions applicationActions, ApplicationUI applicationUI) {
+    static JMenuBar createApplicationMenu(ApplicationController applicationController, ApplicationUI applicationUI) {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = addMenu(menuBar,"File");
-        addMenuItem(fileMenu, "Quit", createMenuShortcutAccelerator('Q'), applicationActions::closeApplication);
+        addMenuItem(fileMenu, "Quit", createMenuShortcutAccelerator('Q'), applicationController::closeApplication);
 
         JMenu motherlandMenu = addMenu(menuBar, "Motherland");
         addMenuItem(motherlandMenu, applicationUI.motherlandViewAction());

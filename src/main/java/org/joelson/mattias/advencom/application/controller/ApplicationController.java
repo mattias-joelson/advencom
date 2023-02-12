@@ -2,7 +2,7 @@ package org.joelson.mattias.advencom.application.controller;
 
 import org.joelson.mattias.advencom.application.view.ApplicationUI;
 
-public class ApplicationActions {
+public class ApplicationController {
 
     private ApplicationUI applicationUI;
 

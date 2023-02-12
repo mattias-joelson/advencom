@@ -1,6 +1,6 @@
 package org.joelson.mattias.advencom.application;
 
-import org.joelson.mattias.advencom.application.controller.ApplicationActions;
+import org.joelson.mattias.advencom.application.controller.ApplicationController;
 import org.joelson.mattias.advencom.application.view.ApplicationUI;
 
 public class Application {
@@ -8,9 +8,9 @@ public class Application {
     private final ApplicationUI applicationUI;
 
     public Application() {
-        ApplicationActions applicationActions = new ApplicationActions();
-        applicationUI = new ApplicationUI(applicationActions);
-        applicationActions.setApplicationUI(applicationUI);
+        ApplicationController applicationController = new ApplicationController();
+        applicationUI = new ApplicationUI(applicationController);
+        applicationController.setApplicationUI(applicationUI);
     }
 
     public void show() {
