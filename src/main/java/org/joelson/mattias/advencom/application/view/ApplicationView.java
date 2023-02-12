@@ -84,9 +84,10 @@ public class ApplicationView {
         setPane(new Container());
     }
 
-    void setPane(Container container) {
+    public void setPane(Container container) {
         applicationFrame.getContentPane().remove(currentContent);
         applicationFrame.getContentPane().add(currentContent = container, BorderLayout.CENTER);
-        applicationFrame.getContentPane().validate();
+        applicationFrame.getContentPane().revalidate();
+        applicationFrame.getContentPane().repaint();
     }
 }
