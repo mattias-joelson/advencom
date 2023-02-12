@@ -18,14 +18,14 @@ public class MotherlandViewActionCreator {
         throw new IllegalAccessException("Should not be instantiated!");
     }
 
-    public static Action create(ApplicationUI applicationUI) {
-        return new ActionBuilder(actionEvent -> showMotherlandView(applicationUI))
+    public static Action create(ApplicationView applicationView) {
+        return new ActionBuilder(actionEvent -> showMotherlandView(applicationView))
                 .withName("Show Motherland")
 //                .withAcceleratorKey(KeyEvent.VK_U)
                 .build();
     }
 
-    private static void showMotherlandView(ApplicationUI applicationUI) {
+    private static void showMotherlandView(ApplicationView applicationView) {
         Event event = Motherland.getMotherlandEvent();
         JPanel contentPane = new JPanel();
         LayoutToolkit toolkit = new LayoutToolkit(contentPane);
@@ -52,6 +52,6 @@ public class MotherlandViewActionCreator {
             toolkit.addControl(new JComponent[]{ boostCheckBox, calculateButton, new JLabel()});
         }
 
-        applicationUI.setPane(contentPane);
+        applicationView.setPane(contentPane);
     }
 }

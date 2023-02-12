@@ -1,18 +1,18 @@
 package org.joelson.mattias.advencom.application.controller;
 
-import org.joelson.mattias.advencom.application.view.ApplicationUI;
+import org.joelson.mattias.advencom.application.view.ApplicationView;
 
 public class ApplicationController {
 
-    private ApplicationUI applicationUI;
+    private ApplicationView applicationView;
 
-    public void setApplicationUI(ApplicationUI applicationUI) {
-        this.applicationUI = applicationUI;
+    public void setApplicationUI(ApplicationView applicationView) {
+        this.applicationView = applicationView;
     }
 
     public void closeApplication() {
         //applicationData.closeDatabase();
-        applicationUI.dispose();
+        applicationView.dispose();
         System.exit(0);
     }
 }

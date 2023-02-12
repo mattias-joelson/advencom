@@ -17,7 +17,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class ApplicationUI {
+public class ApplicationView {
 
     private static final String APPLICATION_TITLE = "AdVenture Communist Calculator";
 
@@ -27,7 +27,7 @@ public class ApplicationUI {
     private final JLabel statusLabel;
     private Container currentContent;
 
-    public ApplicationUI(ApplicationController applicationController) {
+    public ApplicationView(ApplicationController applicationController) {
         this.applicationController = applicationController;
         applicationFrame = createApplicationFrame();
         statusLabel = createContent(applicationFrame.getContentPane());
