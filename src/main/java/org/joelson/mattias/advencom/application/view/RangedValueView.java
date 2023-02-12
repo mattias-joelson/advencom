@@ -19,7 +19,7 @@ public class RangedValueView {
         range = createRangeComboBox();
     }
 
-    public JComponent[] getControls() {
+    public JComponent[] getComponents() {
         return new JComponent[] { label, value, range };
     }
 

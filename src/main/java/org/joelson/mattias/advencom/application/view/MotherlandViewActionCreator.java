@@ -31,21 +31,21 @@ public class MotherlandViewActionCreator {
         LayoutToolkit toolkit = new LayoutToolkit(contentPane);
 
         toolkit.addLabel(event.getName());
-        toolkit.addLabelAndControl(event.getName() + " Power Researcher", new ResearcherView(event.getPowerResearcher()).getControls());
-        toolkit.addLabelAndControl(event.getName() + " Chance Researcher", new ResearcherView(event.getChanceResearcher()).getControls());
-        toolkit.addLabelAndControl(event.getName() + " Bonus Researcher", new ResearcherView(event.getBonusResearcher()).getControls());
+        toolkit.addLabelAndControl(event.getName() + " Power Researcher", new ResearcherView(event.getPowerResearcher()).getComponents());
+        toolkit.addLabelAndControl(event.getName() + " Chance Researcher", new ResearcherView(event.getChanceResearcher()).getComponents());
+        toolkit.addLabelAndControl(event.getName() + " Bonus Researcher", new ResearcherView(event.getBonusResearcher()).getComponents());
 
         for (Industry industry : event.getIndustries()) {
             toolkit.addLabel(industry.getResource());
-            toolkit.addLabelAndControl(industry.getResource() + " Power Researcher", new ResearcherView(industry.getPowerResearcher()).getControls());
-            toolkit.addLabelAndControl(industry.getResource() + " Chance Researcher", new ResearcherView(industry.getChanceResearcher()).getControls());
-            toolkit.addLabelAndControl(industry.getResource() + " Bonus Researcher", new ResearcherView(industry.getBonusResearcher()).getControls());
+            toolkit.addLabelAndControl(industry.getResource() + " Power Researcher", new ResearcherView(industry.getPowerResearcher()).getComponents());
+            toolkit.addLabelAndControl(industry.getResource() + " Chance Researcher", new ResearcherView(industry.getChanceResearcher()).getComponents());
+            toolkit.addLabelAndControl(industry.getResource() + " Bonus Researcher", new ResearcherView(industry.getBonusResearcher()).getComponents());
 
-            toolkit.addControl(new RangedValueView(industry.getResource()).getControls());
+            toolkit.addControl(new RangedValueView(industry.getResource()).getComponents());
             for (Producer producer : industry.getProducers()) {
-                toolkit.addControlAndControl(new RangedValueView(producer.getName()).getControls(), new ResearcherView(producer.getResearcher()).getControls());
+                toolkit.addControlAndControl(new RangedValueView(producer.getName()).getComponents(), new ResearcherView(producer.getResearcher()).getComponents());
             }
-            toolkit.addControl(new RangedValueView("Goal").getControls());
+            toolkit.addControl(new RangedValueView("Goal").getComponents());
             JCheckBox boostCheckBox = new JCheckBox("boost");
             boostCheckBox.setSelected(true);
             JButton calculateButton = new JButton("Calculate");

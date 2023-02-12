@@ -21,7 +21,7 @@ public class ResearcherView {
         effectLabel = new JLabel("[effect]");
     }
 
-    public JComponent[] getControls() {
+    public JComponent[] getComponents() {
         return new JComponent[] { nameLabel, levelComboBox, effectLabel };
     }
 }

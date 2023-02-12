@@ -22,29 +22,29 @@ public class LayoutToolkit {
         container.add(new JLabel(labelText), constraints(0, row++, 6, 1));
     }
 
-    public void addControl(JComponent[] controls) {
-        addControls(controls, 0);
+    public void addControl(JComponent[] components) {
+        addControls(components, 0);
         row += 1;
     }
 
-    public void addLabelAndControl(String labelText, JComponent[] controls) {
+    public void addLabelAndControl(String labelText, JComponent[] components) {
         container.add(new JLabel(labelText), constraints(0, row, 3, 1));
-        addControls(controls, 3);
+        addControls(components, 3);
         row += 1;
     }
 
-    public void addControlAndControl(JComponent[] controls1, JComponent[] controls2) {
-        addControls(controls1, 0);
-        addControls(controls2, 3);
+    public void addControlAndControl(JComponent[] components1, JComponent[] components2) {
+        addControls(components1, 0);
+        addControls(components2, 3);
         row += 1;
     }
 
-    private void addControls(JComponent[] controls, int offset) {
-        if (controls.length != 3) {
-            throw new IllegalArgumentException("Invalid number of controls - " + controls.length);
+    private void addControls(JComponent[] components, int offset) {
+        if (components.length != 3) {
+            throw new IllegalArgumentException("Invalid number of components - " + components.length);
         }
-        for (int i = 0; i < controls.length; i++) {
-            container.add(controls[i], constraints(i + offset, row, 1, 1));
+        for (int i = 0; i < components.length; i++) {
+            container.add(components[i], constraints(i + offset, row, 1, 1));
         }
     }
 
