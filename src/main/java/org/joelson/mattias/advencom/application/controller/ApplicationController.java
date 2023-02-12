@@ -6,8 +6,12 @@ public class ApplicationController {
 
     private ApplicationView applicationView;
 
-    public void setApplicationUI(ApplicationView applicationView) {
+    public void setApplicationView(ApplicationView applicationView) {
         this.applicationView = applicationView;
+    }
+
+    public ApplicationView getApplicationView() {
+        return applicationView;
     }
 
     public void closeApplication() {

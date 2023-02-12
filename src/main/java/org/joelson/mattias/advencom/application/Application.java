@@ -10,7 +10,7 @@ public class Application {
     public Application() {
         ApplicationController applicationController = new ApplicationController();
         applicationView = new ApplicationView(applicationController);
-        applicationController.setApplicationUI(applicationView);
+        applicationController.setApplicationView(applicationView);
     }
 
     public void show() {
