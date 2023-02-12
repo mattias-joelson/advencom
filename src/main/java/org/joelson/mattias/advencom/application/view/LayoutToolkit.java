@@ -22,24 +22,24 @@ public class LayoutToolkit {
         container.add(new JLabel(labelText), constraints(0, row++, 6, 1));
     }
 
-    public void addControl(JComponent[] components) {
-        addControls(components, 0);
+    public void addViewComponents(JComponent[] components) {
+        addViewComponents(components, 0);
         row += 1;
     }
 
-    public void addLabelAndControl(String labelText, JComponent[] components) {
+    public void addLabelAndViewComponents(String labelText, JComponent[] components) {
         container.add(new JLabel(labelText), constraints(0, row, 3, 1));
-        addControls(components, 3);
+        addViewComponents(components, 3);
         row += 1;
     }
 
-    public void addControlAndControl(JComponent[] components1, JComponent[] components2) {
-        addControls(components1, 0);
-        addControls(components2, 3);
+    public void addTwoViewComponents(JComponent[] components1, JComponent[] components2) {
+        addViewComponents(components1, 0);
+        addViewComponents(components2, 3);
         row += 1;
     }
 
-    private void addControls(JComponent[] components, int offset) {
+    private void addViewComponents(JComponent[] components, int offset) {
         if (components.length != 3) {
             throw new IllegalArgumentException("Invalid number of components - " + components.length);
         }
