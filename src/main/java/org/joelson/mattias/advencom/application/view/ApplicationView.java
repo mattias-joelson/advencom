@@ -5,6 +5,8 @@ import org.joelson.mattias.advencom.application.controller.ApplicationController
 import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -86,7 +88,8 @@ public class ApplicationView {
 
     public void setPane(Container container) {
         applicationFrame.getContentPane().remove(currentContent);
-        applicationFrame.getContentPane().add(currentContent = container, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(container, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        applicationFrame.getContentPane().add(currentContent = scrollPane, BorderLayout.CENTER);
         applicationFrame.getContentPane().revalidate();
         applicationFrame.getContentPane().repaint();
     }
