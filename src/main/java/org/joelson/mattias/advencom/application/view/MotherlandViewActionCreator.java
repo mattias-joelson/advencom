@@ -31,15 +31,15 @@ public class MotherlandViewActionCreator {
         LayoutToolkit toolkit = new LayoutToolkit(contentPane);
 
         toolkit.addLabel(event.getName());
-        toolkit.addLabelAndViewComponents(event.getName() + " Power Researcher", new ResearcherView(event.getPowerResearcher()).getComponents());
-        toolkit.addLabelAndViewComponents(event.getName() + " Chance Researcher", new ResearcherView(event.getChanceResearcher()).getComponents());
-        toolkit.addLabelAndViewComponents(event.getName() + " Bonus Researcher", new ResearcherView(event.getBonusResearcher()).getComponents());
+        toolkit.addLabelAndViewComponents(event.getName() + " Power Researcher", new ResearcherView(event.getGlobalResearchers().getPowerResearcher()).getComponents());
+        toolkit.addLabelAndViewComponents(event.getName() + " Chance Researcher", new ResearcherView(event.getGlobalResearchers().getChanceResearcher()).getComponents());
+        toolkit.addLabelAndViewComponents(event.getName() + " Bonus Researcher", new ResearcherView(event.getGlobalResearchers().getBonusResearcher()).getComponents());
 
         for (Industry industry : event.getIndustries()) {
             toolkit.addLabel(industry.getResource());
-            toolkit.addLabelAndViewComponents(industry.getResource() + " Power Researcher", new ResearcherView(industry.getPowerResearcher()).getComponents());
-            toolkit.addLabelAndViewComponents(industry.getResource() + " Chance Researcher", new ResearcherView(industry.getChanceResearcher()).getComponents());
-            toolkit.addLabelAndViewComponents(industry.getResource() + " Bonus Researcher", new ResearcherView(industry.getBonusResearcher()).getComponents());
+            toolkit.addLabelAndViewComponents(industry.getResource() + " Power Researcher", new ResearcherView(industry.getIndustryResearchers().getPowerResearcher()).getComponents());
+            toolkit.addLabelAndViewComponents(industry.getResource() + " Chance Researcher", new ResearcherView(industry.getIndustryResearchers().getChanceResearcher()).getComponents());
+            toolkit.addLabelAndViewComponents(industry.getResource() + " Bonus Researcher", new ResearcherView(industry.getIndustryResearchers().getBonusResearcher()).getComponents());
 
             toolkit.addViewComponents(new RangedValueView(industry.getResource()).getComponents());
             for (Producer producer : industry.getProducers()) {

@@ -3,16 +3,14 @@ package org.joelson.mattias.advencom.model;
 public class Industry {
 
     private final String resource;
-    private final Researcher powerResearcher;
-    private final Researcher chanceResearcher;
-    private final Researcher bonusResearcher;
+    private final GroupResearchers industryResearchers;
+    private final Researcher firstProduceResearcher;
     private final Producer[] producers;
 
-    public Industry(String resource, Researcher powerResearcher, Researcher chanceResearcher, Researcher bonusResearcher, Producer... producers) {
+    public Industry(String resource, Researcher powerResearcher, Researcher chanceResearcher, Researcher bonusResearcher, Researcher firstProduceResearcher, Producer... producers) {
         this.resource = resource;
-        this.powerResearcher = powerResearcher;
-        this.chanceResearcher = chanceResearcher;
-        this.bonusResearcher = bonusResearcher;
+        this.industryResearchers = new GroupResearchers(powerResearcher, chanceResearcher, bonusResearcher);
+        this.firstProduceResearcher = firstProduceResearcher;
         this.producers = producers;
     }
 
@@ -20,16 +18,12 @@ public class Industry {
         return resource;
     }
 
-    public Researcher getPowerResearcher() {
-        return powerResearcher;
+    public GroupResearchers getIndustryResearchers() {
+        return industryResearchers;
     }
 
-    public Researcher getChanceResearcher() {
-        return chanceResearcher;
-    }
-
-    public Researcher getBonusResearcher() {
-        return bonusResearcher;
+    public Researcher getFirstProduceResearcher() {
+        return firstProduceResearcher;
     }
 
     public Producer[] getProducers() {
