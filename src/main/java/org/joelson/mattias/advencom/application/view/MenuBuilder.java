@@ -1,6 +1,7 @@
 package org.joelson.mattias.advencom.application.view;
 
 import org.joelson.mattias.advencom.application.controller.ApplicationController;
+import org.joelson.mattias.advencom.events.EventType;
 
 import javax.swing.Action;
 import javax.swing.JMenu;
@@ -23,6 +24,9 @@ public class MenuBuilder {
 
         JMenu motherlandMenu = addMenu(menuBar, "Motherland");
         addMenuItem(motherlandMenu, applicationView.motherlandViewAction());
+
+        JMenu newMotherlandMenu = addMenu(menuBar, "Events");
+        addMenuItem(newMotherlandMenu, applicationController.getEventsController().getShowEventViewAction(EventType.MOTHERLAND));
 
         return menuBar;
     }
