@@ -2,7 +2,6 @@ package org.joelson.mattias.advencom.application.view;
 
 import org.joelson.mattias.advencom.application.controller.ApplicationController;
 
-import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -35,17 +34,13 @@ public class ApplicationView {
         statusLabel = createContent(applicationFrame.getContentPane());
     }
 
-    Action motherlandViewAction() {
-        return MotherlandViewActionCreator.create(this);
-    }
-
     private JFrame createApplicationFrame() {
         JFrame frame = new JFrame(APPLICATION_TITLE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(screenSize.width / 2, screenSize.height /2);
         frame.setLocation(screenSize.width / 4, screenSize.height / 4);
         frame.setExtendedState(frame.getExtendedState() | Frame.MAXIMIZED_BOTH);
-        frame.setJMenuBar(MenuBuilder.createApplicationMenu(applicationController, this));
+        frame.setJMenuBar(MenuBuilder.createApplicationMenu(applicationController));
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(createFrameWindowListener());
         Desktop.getDesktop().disableSuddenTermination();

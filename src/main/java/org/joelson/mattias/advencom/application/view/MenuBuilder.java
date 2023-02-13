@@ -16,17 +16,14 @@ public class MenuBuilder {
     private MenuBuilder() throws IllegalAccessException {
         throw new IllegalAccessException("Should not be instantiated!");
     }
-    static JMenuBar createApplicationMenu(ApplicationController applicationController, ApplicationView applicationView) {
+    static JMenuBar createApplicationMenu(ApplicationController applicationController) {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = addMenu(menuBar,"File");
         addMenuItem(fileMenu, "Quit", createMenuShortcutAccelerator('Q'), applicationController::closeApplication);
 
-        JMenu motherlandMenu = addMenu(menuBar, "Motherland");
-        addMenuItem(motherlandMenu, applicationView.motherlandViewAction());
-
-        JMenu newMotherlandMenu = addMenu(menuBar, "Events");
-        addMenuItem(newMotherlandMenu, applicationController.getEventsController().getShowEventViewAction(EventType.MOTHERLAND));
+        JMenu eventsMenu = addMenu(menuBar, "Events");
+        addMenuItem(eventsMenu, applicationController.getEventsController().getShowEventViewAction(EventType.MOTHERLAND));
 
         return menuBar;
     }
